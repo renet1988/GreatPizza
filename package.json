@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "npm start --prefix client",
+    "frontend": "npm start --prefix frontend",
     "start": "cd backend && node server.js",
     "server": "cd backend && nodemon server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "author": "Rene Laren Gutierrez Rodriguez",
   "license": "ISC",

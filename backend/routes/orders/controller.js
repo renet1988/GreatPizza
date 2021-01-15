@@ -1,15 +1,15 @@
-let controllerModel = require('../../models/toppingModel');
-let modelName = 'Topping';
+let controllerModel = require('../../models/orderModel');
+let modelName = 'Orders';
 
 /**
- * toppingController.js
+ * ordersController.js
  *
- * @description :: Server-side logic for managing toppings.
+ * @description :: Server-side logic for managing orders.
  */
 module.exports = {
 
     /**
-     * toppingController.get()
+     * ordersController.get()
      */
     get: async (req, res) => {
         try {
@@ -31,7 +31,7 @@ module.exports = {
     },
 
     /**
-     * toppingController.post()
+     * ordersController.post()
      */
     post: async (req, res) => {
         let item = new controllerModel(req.body);
@@ -47,7 +47,7 @@ module.exports = {
     },
 
     /**
-     * toppingController.put()
+     * ordersController.put()
      */
     put: async (req, res) => {
         try {
@@ -66,7 +66,7 @@ module.exports = {
     },
 
     /**
-     * toppingController.delete()
+     * ordersController.delete()
      */
     delete: async (req, res) => {
         try {
