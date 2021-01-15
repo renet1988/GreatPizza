@@ -4,7 +4,7 @@ const routes = require('./routes');
 const app = express();
 
 //https://expressjs.com/en/api.html#req.app
-app.locals.siteTitle = "Some Title";
+app.locals.siteTitle = "Great Pizza Page";
 
 //Automatically parse all requests to JSON, otherwise you need to parse on each route.
 app.use(bodyParser.json());
