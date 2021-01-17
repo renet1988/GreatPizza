@@ -1,4 +1,5 @@
 let controllerModel = require('../../models/pizzaModel');
+const toppingModel = require('../../models/toppingModel');
 let modelName = 'Pizzas';
 
 /**
@@ -14,7 +15,7 @@ module.exports = {
     get: async (req, res) => {
         try {
             if (req.params.id) {
-                let item = await controllerModel.findOne({ _id: req.params.id });
+                let item = await controllerModel.findOne({ _id: req.params.id }).populate('toppings').exec();
                 if (!item) {
                     return res.status(404).json({
                         message: 'No such ' + modelName
@@ -22,7 +23,7 @@ module.exports = {
                 }
                 return res.status(200).json(item);
             } else {
-                let items = await controllerModel.find();
+                let items = await controllerModel.find().populate('toppings').exec();
                 res.status(200).send(items);
             }
         } catch (err) {

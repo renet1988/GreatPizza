@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 const app = express();
+const cors = require('cors')
+
+app.use(cors());
 
 //https://expressjs.com/en/api.html#req.app
 app.locals.siteTitle = "Great Pizza Page";

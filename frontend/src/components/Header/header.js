@@ -7,6 +7,7 @@ function Header() {
         <div className="container" id="navbarNav">
             <div className="navbar-collapse" id="navbarSupportedContent">
                 <Link className="navbar-brand" to="/">Home</Link>
+                <Link className="navbar-brand" to="/order">New Order</Link>
             </div>
         </div>
     </nav>

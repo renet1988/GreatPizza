@@ -1,10 +1,18 @@
 let mongoose = require('mongoose');
-let Schema   = mongoose.Schema;
+let Schema = mongoose.Schema;
 
 let toppingSchema = new Schema({
-	name : {type:String, required:true},
-},
-{ timestamps: true }
-);
+	name: {
+		type: String,
+		required: true,
+		unique: true
+	},
+	shortName: {
+		type: String,
+		required: true,
+	}
+}, {
+	timestamps: true
+});
 
 module.exports = mongoose.model('topping', toppingSchema);

@@ -1,10 +1,11 @@
 import React from 'react';
+import Orders from '../Order/orders'
 
 class Home extends React.Component{
   render() {
     return (
       <div className="container">
-        <h1 className="display-3">This is Home Page</h1>
+        <Orders/>
       </div>
     );
   }

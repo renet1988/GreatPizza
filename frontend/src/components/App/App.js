@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import Home from '../Home/home';
 import Header from '../Header/header';
-import Order from '../Order/order';
+import Orders from '../Order/orders';
+import NewOrder from '../Order/newOrder';
 
 
 function App() {
@@ -11,8 +12,9 @@ function App() {
     <Router>
       <div>
         <Header />
-        <Order />
+        {/* <Orders /> */}
         <Route exact path="/" component={Home} />
+        <Route exact path="/order" component={NewOrder} />
       </div>
     </Router>
   );
