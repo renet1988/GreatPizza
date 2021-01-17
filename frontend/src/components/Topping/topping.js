@@ -26,7 +26,8 @@ class Topping extends React.Component {
         await axios.post("/topping",params, {crossdomain: true})
             .then(response => {
                 this.setState({
-                    orders: response.data
+                    orders: response.data,
+                    name: ''
                 });
             })
             .catch(function (error) {

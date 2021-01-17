@@ -1,18 +1,25 @@
 import React from 'react';
 import axios from '../../service/axios';
+import LoadPage from '../LoadPage/loadPage';
 
 class Pizza extends React.Component {
 
     state = {
         name: '',
-        toppings: []
+        toppings: [],
+        flag: true
     }
 
     componentDidMount = async () => {
+        this.getToppings()
+    }
+    
+    getToppings = async () => {
         await axios.get("/topping", {crossdomain: true})
             .then(response => {
                 this.setState({
-                    toppings: response.data
+                    toppings: response.data,
+                    flag: false
                 });
             })
             .catch(function (error) {
@@ -60,14 +67,29 @@ class Pizza extends React.Component {
         } catch (error) {
             console.log('ERROR::', error)            
         }
+        this.reloadPage();
     }
 
     capitalize = (word) => {
         return word[0].toUpperCase() + word.slice(1);
     }
 
+    reloadPage = () => {
+        this.setState({
+            name: '',
+            toppings: [],
+            flag: true
+        });
+        this.getToppings()
+    }
+
     render(){
-        const {name, toppings} = this.state;
+        const {name, toppings, flag} = this.state;
+        if(flag){
+            return (
+                <LoadPage />
+            )
+        }
         return(
             <div className="m-2">
                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#pizzaModal">

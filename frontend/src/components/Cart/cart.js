@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from '../../service/axios';
+import LoadPage from '../LoadPage/loadPage';
 
 class Cart extends React.Component{
 
@@ -21,7 +22,8 @@ class Cart extends React.Component{
         await axios.get("/topping", {crossdomain: true})
             .then(response => {
                 this.setState({
-                    toppings: response.data
+                    toppings: response.data,
+                    flag: false
                 });
             })
             .catch(function (error) {
@@ -72,14 +74,31 @@ class Cart extends React.Component{
             .catch(function (error) {
                 console.log("ERROR HERE", error);
             });
+            this.reloadPage();
     }
 
     capitalize = (word) => {
         return word[0].toUpperCase() + word.slice(1);
     }
 
+    reloadPage = () => {
+        this.setState({
+            orderCart: [],
+            toppings: [],
+            flag: true, 
+            index: 0
+        })
+        this.getToppings();
+        this.props.onReloadPage();
+    }
+
     render(){
-        const {orderCart, toppings} = this.state;
+        const {orderCart, toppings, flag} = this.state;
+        if(flag){
+            return(
+                <LoadPage />
+            )
+        }
         return(
             <div>
                 <h4 className="text-center">Order Cart</h4>
@@ -113,7 +132,7 @@ class Cart extends React.Component{
                         )
                     }
                 </table>
-                <button type="button" className="btn btn-primary" onClick={this.handleCreateOrder}>SAVE</button>
+                <button type="button" className="btn btn-primary" onClick={this.handleCreateOrder}>Save</button>
 
                 <div className="modal fade" id="addToppingModal" tabIndex="-1" role="dialog" aria-labelledby="addToppingModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">

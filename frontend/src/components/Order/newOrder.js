@@ -12,6 +12,10 @@ class NewOrder extends React.Component {
     }
 
     componentDidMount = async () => {
+        this.getPizzas();
+    }
+    
+    getPizzas = async () => {
         await axios.get("/pizza", {crossdomain: true})
             .then(response => {
                 this.setState({
@@ -44,6 +48,16 @@ class NewOrder extends React.Component {
         this.setState({
             orderCart: cart
         });
+    }
+
+    reloadPage = () => {
+        this.setState({
+            client : 'Client',
+            pizzas: [],
+            orderCart: [],
+            flag: true
+        })
+        this.getPizzas();
     }
 
     render(){
@@ -104,7 +118,7 @@ class NewOrder extends React.Component {
                 </form>
                 </div>
                 <div className="col m-2 p-2 border">
-                    <Cart orderCart = {orderCart} client={client} />
+                    <Cart orderCart = {orderCart} client={client} onReloadPage={this.reloadPage} />
                 </div>
             </div>
         )
